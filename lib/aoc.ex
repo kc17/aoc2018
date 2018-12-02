@@ -1,6 +1,6 @@
-defmodule Aoc do
+defmodule AoC do
   @moduledoc """
-  Documentation for Aoc.
+  Documentation for AoC.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule Aoc do
 
   ## Examples
 
-      iex> Aoc.hello()
+      iex> AoC.hello()
       :world
 
   """
