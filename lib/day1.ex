@@ -19,7 +19,7 @@ defmodule AoC.Day1 do
   end
 
   defp read_changes do
-    File.read!("#{System.cwd()}/priv/changes")
+    File.read!("#{System.cwd()}/priv/day1_changes")
     |> String.trim()
     |> String.split("\n")
   end
