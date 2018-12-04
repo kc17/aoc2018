@@ -1,14 +1,28 @@
 defmodule Day3 do
   @claims_path "#{System.cwd()}/priv/day3_claims"
 
-  alias Day3.Claim
-
   def part1(path \\ @claims_path) do
+    overlaped_area =
+      File.stream!(path)
+      |> Stream.map(&establish_area/1)
+      |> Enum.reduce({[], []}, &calc_overlap/2)
+      |> elem(1)
+
+    {Enum.count(overlaped_area), overlaped_area}
+  end
+
+  def part2(path \\ @claims_path) do
+    {_, overlaped} = part1(path)
+
     File.stream!(path)
     |> Stream.map(&establish_area/1)
-    |> Enum.reduce({[], []}, &calc_overlap/2)
-    |> elem(1)
-    |> Enum.count()
+    |> Enum.reduce_while(nil, fn {id, area}, _ ->
+      if :ordsets.intersection(area, overlaped) == [] do
+        {:halt, id}
+      else
+        {:cont, nil}
+      end
+    end)
   end
 
   defp establish_area(claim) do
