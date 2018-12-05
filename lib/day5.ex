@@ -1,9 +1,10 @@
 defmodule Day5 do
-  @polymer_path "#{System.cwd()}/priv/day5_polymers"
+  @polymer_path "#{System.cwd()}/priv/day5_polymer"
 
   def part1 do
     @polymer_path
     |> File.read!
+    |> String.trim
     |> String.to_charlist
     |> run_reaction
     |> Enum.count
